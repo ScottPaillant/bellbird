@@ -12,7 +12,7 @@
   </thead>
 
   <tbody>
-    <% @alarms.each do |alarm| %>
+    <% @alarms.reverse.each do |alarm| %>
       <tr>
         <td><%= alarm.text %></td>
         <td><%= alarm.date %></td>

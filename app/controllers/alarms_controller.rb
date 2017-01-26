@@ -1,6 +1,9 @@
+  require 'uri'
+  require 'net/http'
+  require 'json'
 class AlarmsController < ApplicationController
   before_action :set_alarm, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /alarms
   # GET /alarms.json
   def index
@@ -30,6 +33,7 @@ class AlarmsController < ApplicationController
       if @alarm.save
         format.html { redirect_to @alarm, notice: 'Alarm was successfully created.' }
         format.json { render :show, status: :created, location: @alarm }
+        post_text()
       else
         format.html { render :new }
         format.json { render json: @alarm.errors, status: :unprocessable_entity }
@@ -60,7 +64,19 @@ class AlarmsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def post_text
+    uri = URI('http://handshake-bellbird.herokuapp.com/push')
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.set_debug_output($stdout)
+    req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
+    req.body = {alarm_id: @alarm.id }.to_json
+    res = http.request(req)
+    puts "response #{res.body}"
+  rescue => e
+    puts "failed #{e}"
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_alarm
