@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Alarms</h1>
+<nav class="navbar navbar-fixed-top navbar-inverse "> Bellbird </nav>
 
-<table>
+<h1> Alarms</h1>
+<table class="jumbotron">
   <thead>
     <tr>
       <th>Text</th>
       <th>Date</th>
+      <th>Upvotes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +18,8 @@
       <tr>
         <td><%= alarm.text %></td>
         <td><%= alarm.date %></td>
+        <td><%= alarm.votes%></td>
+        <td><%= link_to "Upvote" %></td>
         <td><%= link_to 'Show', alarm %></td>
         <td><%= link_to 'Edit', edit_alarm_path(alarm) %></td>
         <td><%= link_to 'Destroy', alarm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -23,7 +27,6 @@
     <% end %>
   </tbody>
 </table>
-
 <br>
 
-<%= link_to 'New Alarm', new_alarm_path %>
+<%= link_to 'New Alarm', new_alarm_path , class: "btn btn-lg btn-primary" %>

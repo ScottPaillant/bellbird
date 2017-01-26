@@ -65,6 +65,12 @@ class AlarmsController < ApplicationController
     end
   end
   
+  def upvote
+    @alarm.votes += 1
+    @alarm.update
+    redirect_to alarms_path
+  end
+  
   def post_text
     uri = URI('http://handshake-bellbird.herokuapp.com/push')
     http = Net::HTTP.new(uri.host, uri.port)

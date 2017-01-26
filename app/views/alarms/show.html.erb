@@ -1,14 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Text:</strong>
-  <%= @alarm.text %>
-</p>
+  <h1> Alarm </h1>
 
-<p>
-  <strong>Date:</strong>
-  <%= @alarm.date %>
-</p>
+<div class="jumbotron">
+  
+  <p>
+    <strong>Text:</strong>
+    <%= @alarm.text %>
+  </p>
+  
+  <p>
+    <strong>Date:</strong>
+    <%= @alarm.date %>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_alarm_path(@alarm) %> |
-<%= link_to 'Back', alarms_path %>
+<%= link_to 'Edit', edit_alarm_path(@alarm) , class:"btn btn-primary" %> |
+<%= link_to 'Back', alarms_path , class:"btn btn-primary"%>
